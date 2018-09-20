@@ -8,6 +8,9 @@ having monorepos ([Lerna](https://github.com/lerna/lerna), Yarn Workspaces, etc.
 
 ## Install
 ```
+# make sure you have nodemon already installed
+npm install -g nodemon
+
 npm install -g linkemon 
 ```
 

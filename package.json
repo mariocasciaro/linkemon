@@ -10,8 +10,11 @@
     "type": "git",
     "url": "git://github.com/mariocasciaro/linkemon.git"
   },
+  "bin": {
+    "linkemon" : "bin/linkemon"
+  },
   "preferGlobal": true,
-  "dependencies": {
+  "peerDependencies": {
     "nodemon": "^1.18.4"
   },
   "keywords": [
