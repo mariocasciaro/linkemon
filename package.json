@@ -1,0 +1,25 @@
+{
+  "name": "linkemon",
+  "description": "Wrapper script around nodemon that will automatically watch all linked modules",
+  "version": "0.0.1",
+  "author": {
+    "name": "Mario Casciaro"
+  },
+  "homepage": "https://github.com/mariocasciaro/linkemon",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mariocasciaro/linkemon.git"
+  },
+  "preferGlobal": true,
+  "dependencies": {
+    "nodemon": "^1.18.4"
+  },
+  "keywords": [
+    "nodemon",
+    "lerna",
+    "workspace",
+    "link",
+    "modules"
+  ],
+  "license": "MIT"
+}

@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+COMMAND_LINE=()
+COMMAND_LINE+=('--watch')
+COMMAND_LINE+=('.')
+
+for PACKAGE_DIR in `find node_modules/* -type l -maxdepth 1`
+do
+  COMMAND_LINE+=('--watch')
+  COMMAND_LINE+=("$(realpath ${PACKAGE_DIR})")
+  COMMAND_LINE+=('--ignore')
+  COMMAND_LINE+=("$(realpath ${PACKAGE_DIR})/node_modules/**/*")
+done
+
+nodemon "${COMMAND_LINE[@]}" "$@"
