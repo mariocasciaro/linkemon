@@ -8,7 +8,7 @@ while [[ $# -gt 0 ]]; do
 
   case $key in
   --ignorePackage)
-    IGNORE_PACKAGES+=("$2")
+    IGNORE_PACKAGES+=("node_modules/$2")
     shift # past argument
     shift # past value
     ;;
