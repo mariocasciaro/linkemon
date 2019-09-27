@@ -1,15 +1,40 @@
 #!/usr/bin/env bash
 
+IGNORE_PACKAGES=()
+
+POSITIONAL=()
+while [[ $# -gt 0 ]]; do
+  key="$1"
+
+  case $key in
+  --ignorePackage)
+    IGNORE_PACKAGES+=("$2")
+    shift # past argument
+    shift # past value
+    ;;
+  *) # unknown option
+    POSITIONAL+=("$1") # save it in an array for later
+    shift              # past argument
+    ;;
+  esac
+done
+set -- "${POSITIONAL[@]}" # restore positional parameters
+
 COMMAND_LINE=()
 COMMAND_LINE+=('--watch')
 COMMAND_LINE+=('.')
 
-for PACKAGE_DIR in `find node_modules/* -type l -maxdepth 1`
-do
+for PACKAGE_DIR in $(find node_modules/* -type l -maxdepth 1); do
+  # trick from https://stackoverflow.com/a/15394738/1234037
+  if [[ " ${IGNORE_PACKAGES[@]} " =~ " ${PACKAGE_DIR} " ]]; then
+    continue
+  fi
   COMMAND_LINE+=('--watch')
   COMMAND_LINE+=("$(realpath ${PACKAGE_DIR})")
   COMMAND_LINE+=('--ignore')
   COMMAND_LINE+=("$(realpath ${PACKAGE_DIR})/node_modules/**/*")
 done
+
+# echo nodemon "${COMMAND_LINE[@]}" "$@"
 
 nodemon "${COMMAND_LINE[@]}" "$@"
